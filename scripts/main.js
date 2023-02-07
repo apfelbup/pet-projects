@@ -98,32 +98,36 @@ petBlock.addEventListener("animationiteration", function(e){
 })
 
 
-// const leafReplics = ["Я принёс лист. Возьми.","Ещё один. Я люблю листья.","Последний лист на этой странице."]
-// let leafCount = 0;
-// const findInterval = setInterval(petFindItem,60000);
+const leafReplics = ["Я принёс лист. Возьми.","Ещё один. Я люблю листья.","Последний лист на этой странице."]
+let leafCount = 0;
+const findInterval = setInterval(petFindItem,60000);
 
 
-// function petFindItem(){
-//   if(leafCount >= 2) {
-//     clearInterval(findInterval);
-//   };
-//   replic.innerHTML =  `${leafReplics[leafCount]}`;
-//   petBlock.classList.add('paused');
-//   pet.src="./public/foxGive.gif";
+function petFindItem(){
+  if(leafCount >= 2) {
+    clearInterval(findInterval);
+  };
+  replic.innerHTML =  `${leafReplics[leafCount]}`;
+  petBlock.classList.add('paused');
+  pet.src="./public/foxGive.gif";
 
-//   pet.onclick = () => {
-//     replic.innerHTML = "";
-//     petBlock.classList.remove('paused');
-//     pet.src="./public/foxLie.gif";
-//     leafCount +=1;
-//   }
+  pet.onclick = () => {
+    replic.innerHTML = "";
+    petBlock.classList.remove('paused');
+    pet.src="./public/foxLie.gif";
+    leafCount +=1;
+  }
 
-// }
+}
 
 
 petBlock.onclick = () => {
+  petBlock.classList.add('paused');
+  pet.src="./public/foxLie.gif";
   replic.innerHTML = "Я люблю тебя, летающая мышка <br> ❤";
   setTimeout(()=>{
     replic.innerHTML = "";
+    pet.src="./public/foxWalk.gif";
+    petBlock.classList.remove('paused');
   },4000)
 }
