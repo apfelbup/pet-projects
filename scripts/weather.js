@@ -1,4 +1,4 @@
-const link = "http://api.weatherstack.com/current?access_key=6ff9813d6a8d9da1d231e8aad33447c4";
+
 const weather = document.getElementById('weather');
 const popup = document.getElementById('weather-popup');
 const loader = document.getElementById('loader');
@@ -41,23 +41,37 @@ const removeLoader = () => {
 }
 
 
+
+
+
 const fetchData = async () => {
     try {
         addLoader();
     const query = localStorage.getItem('query') || store.city;
-    const result = await fetch(`${link}&query=${query}`);
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '725850a7c6mshd463aab6de43ddep1108f9jsn07248d7ebe8c',
+            'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+        }
+    };
+    
+    const result = await fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${query}`, options);
+
     const data = await result.json();
-    const { current:{
-        feelslike, 
-        cloudcover,
-        temperature,
+    console.log(data);
+    const {current:{
+        feelslike_c:feelslike, 
+        cloud:cloudcover,
+        temp_c:temperature,
         humidity,
-        observation_time:observationTime,
-        pressure,
-        uv_index: uvIndex,
-        visibility,
-        weather_descriptions:description,
-        wind_speed: windSpeed,},
+        last_updated:observationTime,
+        pressure_in:pressure,
+        uv: uvIndex,
+        vis_km:visibility,
+        condition:{text:description},
+        wind_mph: windSpeed,},
         location:{name}
         } = data;
 
@@ -70,7 +84,7 @@ const fetchData = async () => {
             humidity,
             observationTime,
             uvIndex,
-            description:description[0],
+            description:description,
             windSpeed,
             properties: {
                 cloudcover: {
@@ -84,7 +98,7 @@ const fetchData = async () => {
                     icon:"fog.png"},
                 visibility:{
                     title:"visibility",
-                    value:`${visibility}%`,
+                    value:`${visibility}km`,
                     icon:"thunder.png"},
                 pressure:{
                     title:"pressure",
@@ -99,7 +113,7 @@ const fetchData = async () => {
     }
 }
 
-// fetchData();
+fetchData();
 
 
 const getImage = () => {
@@ -155,7 +169,7 @@ const markup = () => {
         </div>
         </div>
         <div class="top-right">
-            <div class="city-info__subtitle">as of ${observationTime}</div>
+            <div class="city-info__subtitle">${observationTime}</div>
             <div class="city-info__title ${temperatureClass}">${temperature}°</div>
         </div>
     </div>

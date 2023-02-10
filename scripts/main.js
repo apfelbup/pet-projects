@@ -100,7 +100,7 @@ petBlock.addEventListener("animationiteration", function(e){
 
 const leafReplics = ["Я принёс лист. Возьми.","Ещё один. Я люблю листья.","Последний лист на этой странице."]
 let leafCount = 0;
-const findInterval = setInterval(petFindItem,60000);
+const findInterval = setInterval(petFindItem,50000);
 
 
 function petFindItem(){
