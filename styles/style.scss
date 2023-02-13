@@ -598,52 +598,6 @@ main{
 }
 
 
-.chat-app{
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 40vw;
-  .chat_container{
-    scroll-behavior: smooth;
-    padding: 1em;
-    height: 50vh;
-    background: #DBE2EF;
-    .chat{
-      color: #2C95DD;
-      display: flex;
-      margin-bottom: 1em;
-      .profile{
-        margin-right: 0.5em;
-      }
-    }
-  }
-  form{
-    padding: 1em;
-    background: #112D4E;
-
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-
-    textarea{
-      font-family: 'Press Start 2P'; 
-      color: #fff;
-      width: 100%;
-      height: 5em;
-      outline: none;
-      border: none;
-      background: transparent;
-      resize: none;
-
-    }
-    button {
-      cursor: pointer;
-      background: transparent;
-      border: none;
-    }
-  }
-}
-
 .lyrics-app{
   max-width: 620px;
   display: none;
@@ -994,7 +948,7 @@ main{
 }
 
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 600px) {
   .header{
     margin-bottom: 3rem;
     .menu-path{
@@ -1052,7 +1006,18 @@ main{
           }
         }
       }
-  
+
+        .properties{
+          grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+          grid-gap: 1em;
+          .property{
+            img{
+              width: 40px;
+              margin-bottom: 1em;
+              margin-right: 1em;
+            }
+          }
+      }
     }
   
   }
@@ -1108,7 +1073,7 @@ main{
         }
 
         p{
-          font-size: .8rem;
+          font-size: .7rem;
         }
 
         p:last-child{
@@ -1147,6 +1112,16 @@ main{
 }
 
 @media screen and (max-width: 467px) {
+  .greeting{
+    button{
+      font-size: .8rem;
+    }
+  }
+  
+  .typing {
+    font-size: .6em;
+  }
+  
   .header{
     .menu-path{
       font-size: .5rem;
@@ -1158,6 +1133,7 @@ main{
       margin-bottom: 1.5em;
     }
     .options{
+      text-align: left;
       font-size: .7em;
     }
   }
@@ -1205,12 +1181,12 @@ main{
         }
   
         .city-info{
-          margin-bottom: 3em;
+          margin-bottom: 2em;
   
           .top-descr{
             .icon{
               width: 80px;
-              margin-bottom: 1em;
+              margin-bottom: .8em;
             }
             .description{
               font-size: 1em;
@@ -1218,9 +1194,27 @@ main{
           }
         }
       }
+
       .properties{
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
         grid-gap: .5em;
-      }
+        .property{
+          .property-info{
+            &__value{
+              margin-bottom: .5em;
+            }
+            &__description{
+              font-size: 0.6rem;
+              color: #112D4E;
+            }
+          }
+          img{
+            width: 25px;
+            margin-bottom: 1em;
+            margin-right: .5em;
+          }
+        }
+    }
   
     }
   
@@ -1229,6 +1223,20 @@ main{
   .game-app{
     .block{
       padding: 1em;
+      .info{
+        h3{
+          font-size: 1.3em;
+          margin-bottom: 0.5em;
+        }
+
+        p{
+          font-size: .6rem;
+        }
+
+        p:last-child{
+          margin-bottom: 2em;
+        }
+      }
     }
     .game-main{
       padding: 2em 1em;
@@ -1298,5 +1306,144 @@ main{
   }
   .cellempty{
     padding: 2px;
+  }
+
+  @keyframes walking {
+    0%{
+      margin-left: 10vw;
+    }
+    100%{
+      margin-left: 70vw;
+    }
+  
+  }
+
+  .footer{ 
+    .pet{
+      animation: walking 4s infinite alternate linear;
+      .fox-replicas{
+        width: 250px;
+        position: absolute;
+        top: -3.5em;
+        right: -5.5em;
+        line-height: 1.3em;
+        font-size: .8rem;
+        text-align: center;
+      }
+    }
+  }
+}
+
+
+
+@media screen and (max-width: 380px) {
+  .menu{
+    h2{
+      text-align: center;
+    }
+    .options{
+      font-size: .6em;
+    }
+  }
+  .weather-app{
+    .app-menu{
+      .form-input{
+        max-width: 100px;
+      }
+    }
+  
+    .container{
+      .top{
+        .city{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 1.5em;
+          .city-subtitle{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1em;
+            p{
+              font-size: .8em;
+              margin-bottom: 1em;
+            }
+            .city-title{
+              font-size: 1.4em;
+            }
+          }
+  
+          .top-right{
+            display: flex;
+            flex-direction: column;
+            align-items:stretch;
+            .city-info__subtitle{
+              font-size: .8em;
+              margin-bottom: 1em;
+            }
+            .city-info__title{
+              font-size: 2em;
+              text-align: center;
+            }
+  
+          }
+        }
+  
+        .city-info{
+          margin-bottom: 1.5em;
+  
+          .top-descr{
+            .icon{
+              width: 50px;
+              margin-bottom: .8em;
+            }
+            .description{
+              font-size: 1em;
+            }
+          }
+        }
+      }
+  
+      .properties{
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        grid-gap: .5em;
+        .property{
+          .property-info{
+            &__value{
+              margin-bottom: .5em;
+            }
+            &__description{
+              font-size: 0.6rem;
+              color: #112D4E;
+            }
+          }
+          img{
+            width: 25px;
+            margin-bottom: 1em;
+            margin-right: .5em;
+          }
+        }
+    }
+  
+    }
+  
+  }
+
+
+  .game-app{
+    .game-main{
+      padding: 1em .5em;
+      .restart{
+        font-size: .7em;
+      }
+    }
+  
+  }
+
+  .cellfilled{
+    padding: 1.5px;
+  }
+  .cellempty{
+    padding: 1.5px;
   }
 }

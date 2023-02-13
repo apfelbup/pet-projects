@@ -89,10 +89,10 @@ function AnimationHandler () {
 petBlock.addEventListener("animationiteration", function(e){
   let right = petBlock.getBoundingClientRect();
 
-  if( right.x >= 235){
+  if( right.x >= 222){
     pet.style.transform = "scaleX(-1)";
   }
-  if( right.x <=230){
+  if( right.x <=220){
     pet.style.transform ="scaleX(1)";
   }
 })

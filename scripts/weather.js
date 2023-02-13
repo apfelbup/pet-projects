@@ -60,7 +60,6 @@ const fetchData = async () => {
     const result = await fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${query}`, options);
 
     const data = await result.json();
-    console.log(data);
     const {current:{
         feelslike_c:feelslike, 
         cloud:cloudcover,
